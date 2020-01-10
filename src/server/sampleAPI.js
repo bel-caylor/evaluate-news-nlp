@@ -20,3 +20,5 @@ let sampleAPI = {
     ]
   }
 }
+
+module.exports = sampleAPI
