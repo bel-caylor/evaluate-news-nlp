@@ -7,3 +7,7 @@ import './styles/resets.scss'
 
 alert("I EXIST")
 console.log("CHANGE!!");
+
+export {
+  handleSubmit
+}
