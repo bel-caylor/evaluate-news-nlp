@@ -1,3 +1,8 @@
+// const submitCode = (event) => {
+//   alert('I work!')
+// };
+
+
 function handleSubmit(event) {
     event.preventDefault()
 
