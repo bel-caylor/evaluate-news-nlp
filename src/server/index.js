@@ -13,6 +13,10 @@ var textapi = new AYLIENTextAPI({
 
 const app = express()
 
+// Cors for cross origin allowance
+const cors = require('cors');
+app.use(cors());
+
 app.use(express.static('dist'))
 
 console.log(__dirname)
