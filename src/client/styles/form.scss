@@ -10,3 +10,18 @@ input {
     line-height: 16px;
     margin: 10px 0;
 }
+
+input[type=submit] {
+  width: 25%;
+  // float: center;
+}
+
+input[type=submit]:hover {
+  background: yellow;
+  font-weight: bold;
+}
+
+input[type=text]:hover {
+  background: yellow;
+  font-weight: bold;
+}
