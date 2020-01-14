@@ -21,14 +21,37 @@ app.use(express.static('dist'))
 
 console.log(__dirname)
 
+// designates what port the app will listen to for incoming requests
+app.listen(8080, function () {
+    console.log('Example app listening on port 8080!')
+    console.log(`Your API key is ${process.env.API_KEY}`);
+    getAPIData()
+})
+
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
-})
+
+// const getAylienAPI =
+async function getAylienAPI(req, res) {
+  console.log(req.body)
+  const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
+  textapi.entities({'url': testURL},
+  function(error, response) {
+    if (error === null) {
+    console.log(response);
+  }else{
+    console.log("error:",  error);
+    console.log(textapi);
+  }
+  })
+};
+
+app.get('/apiData', getAylienAPI(req, res))
+
+
+
 
 app.get('/test', function (req, res) {
     res.send(sampleAPIResp)

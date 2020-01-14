@@ -5,8 +5,8 @@ function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formURL = document.getElementById('formURL').value
-    console.log(formURL)
+
+    // console.log(formURL)
     callAylienAPI(formURL)
 
 
