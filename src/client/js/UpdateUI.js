@@ -17,7 +17,7 @@ const updateUI = async () => {
 
     //Add Locations
 const updateHTML = (allData) => {
-    const locations = allData.entities.location
+    const locations = allData.loc
     let locationHTML = ""
     locations.forEach((location) => {
       locationHTML += "<div><a href=\"https://en.wikipedia.org/wiki/" + location + "\">" + location + "</a></div>"
@@ -25,7 +25,7 @@ const updateHTML = (allData) => {
     document.getElementById('locations').insertAdjacentHTML('beforeend', locationHTML)
 
     //Add Keywords
-    const keywords = allData.entities.keyword
+    const keywords = allData.keyW
     let keywordHTML = ""
     keywords.forEach((keyword) => {
       keywordHTML += "<div><a href=\"https://en.wikipedia.org/wiki/" + keyword + "\">" + keyword + "</a></div>"
@@ -33,7 +33,7 @@ const updateHTML = (allData) => {
     document.getElementById('keywords').insertAdjacentHTML('beforeend', keywordHTML)
 
     //Add Organizations
-    const organizations = allData.entities.organization
+    const organizations = allData.org
     let organizationHTML = ""
     organizations.forEach((organization) => {
       organizationHTML += "<div><a href=\"https://en.wikipedia.org/wiki/" + organization + "\">" + organization + "</a></div>"
@@ -41,7 +41,7 @@ const updateHTML = (allData) => {
     document.getElementById('organizations').insertAdjacentHTML('beforeend', organizationHTML)
 
     //Add People
-    const people = allData.entities.person
+    const people = allData.pers
     let peopleHTML = ""
     people.forEach((person) => {
         peopleHTML += "<div><a href=\"https://en.wikipedia.org/wiki/" + person + "\">" + person + "</a></div>"

@@ -57,8 +57,18 @@ function getAylienAPI(req, res) {
   textapi.entities(formURL,
   function(error, response) {
     if (error === null) {
-    aylienData = response.entities;
+    // aylienData = response.entities;
     // console.log(aylienData);
+    let newData = response.entities;
+    let newEntry = {
+      loc: newData.location,
+      keyW: newData.keyword,
+      org: newData.organization,
+      pers: newData.person
+      };
+    aylienData.push(newEntry);
+    console.log(aylienData);
+
     }else{
     console.log("error:",  error);
     console.log(textapi);
