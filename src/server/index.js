@@ -3,7 +3,7 @@ dotenv.config();
 var path = require('path')
 const express = require('express')
 const sampleAPIResp = require('./sampleAPI.js')
-let aylienData = [];
+const aylienData = [];
 
 //Setup Aylient API
 var AYLIENTextAPI = require('aylien_textapi');
@@ -39,23 +39,43 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-
-app.post('/apiData', getAylienAPI);
-
-app.get('/getData', function (req, res) {
-    console.log(aylienData);
-    res.send(aylienData);
-    console.log('Data sent')
-});
-
 // const getAylienAPI =
-function getAylienAPI(req, res) {
+// const getAylienAPI = async (req, res) => {
+//   // console.log(req.body.URL);
+//   console.log('Post Received!');
+//   const formURL = req.body.URL;
+//   // const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
+//   textapi.entities(formURL,
+//   async function(error, response) {
+//     if (error === null) {
+//     // aylienData = response.entities;
+//     // console.log(aylienData);
+//     let newData = response.entities;
+//     let newEntry = {
+//       loc: newData.location,
+//       keyW: newData.keyword,
+//       org: newData.organization,
+//       pers: newData.person
+//       };
+//     aylienData.push(newEntry);
+//     console.log('Data End of Post:', aylienData);
+//
+//     }else{
+//     console.log("error:",  error);
+//     console.log(textapi);
+//   }
+//   })
+// };
+
+// app.post('/apiData', getAylienAPI);
+
+app.post('/apiData', async (req, res) => {
   // console.log(req.body.URL);
   console.log('Post Received!');
   const formURL = req.body.URL;
-  const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
+  // const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
   textapi.entities(formURL,
-  function(error, response) {
+    await function(error, response) {
     if (error === null) {
     // aylienData = response.entities;
     // console.log(aylienData);
@@ -67,11 +87,17 @@ function getAylienAPI(req, res) {
       pers: newData.person
       };
     aylienData.push(newEntry);
-    console.log(aylienData);
+    console.log('Data End of Post:', aylienData);
 
     }else{
     console.log("error:",  error);
     console.log(textapi);
   }
   })
-};
+});
+
+app.get('/getData', function (req, res) {
+    console.log('Data Begin of Get:', aylienData);
+    res.send(aylienData);
+    console.log('Data sent')
+});

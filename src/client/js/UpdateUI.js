@@ -1,6 +1,11 @@
 const updateUI = async () => {
   console.log('UpdateUI started')
-    const request = await fetch('http://localhost:8080/getData');
+    const request = await fetch('http://localhost:8080/getData', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json',},
+      // body: JSON.stringify(data),
+    });
     console.log(request);
 
     try{
