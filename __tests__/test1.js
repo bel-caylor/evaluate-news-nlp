@@ -1,8 +1,6 @@
-//See this article for instruction.
-//https://www.valentinog.com/blog/jest/
+const sum = require('../src/client/js/formHandler.js');
 
-describe("Filter function", () => {
-  test("it should filter by a search term (link)", () => {
-    // actual test
-  });
+test('testValidURL', () => {
+  expect(testValidURL('test')).toBe(false);
+  expect(testValidURL('http://www.etsy.com')).toBe(true);
 });
