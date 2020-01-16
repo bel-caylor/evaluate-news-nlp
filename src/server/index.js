@@ -39,43 +39,13 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-// const getAylienAPI =
-// const getAylienAPI = async (req, res) => {
-//   // console.log(req.body.URL);
-//   console.log('Post Received!');
-//   const formURL = req.body.URL;
-//   // const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
-//   textapi.entities(formURL,
-//   async function(error, response) {
-//     if (error === null) {
-//     // aylienData = response.entities;
-//     // console.log(aylienData);
-//     let newData = response.entities;
-//     let newEntry = {
-//       loc: newData.location,
-//       keyW: newData.keyword,
-//       org: newData.organization,
-//       pers: newData.person
-//       };
-//     aylienData.push(newEntry);
-//     console.log('Data End of Post:', aylienData);
-//
-//     }else{
-//     console.log("error:",  error);
-//     console.log(textapi);
-//   }
-//   })
-// };
-
-// app.post('/apiData', getAylienAPI);
-
-app.post('/apiData', async (req, res) => {
+const getAylienAPI = async (req, res) => {
   // console.log(req.body.URL);
   console.log('Post Received!');
   const formURL = req.body.URL;
   // const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
-  textapi.entities(formURL,
-    await function(error, response) {
+  const getData = await textapi.entities(formURL,
+    function(error, response) {
     if (error === null) {
     // aylienData = response.entities;
     // console.log(aylienData);
@@ -94,7 +64,36 @@ app.post('/apiData', async (req, res) => {
     console.log(textapi);
   }
   })
-});
+};
+
+app.post('/apiData', getAylienAPI);
+
+// app.post('/apiData', async (req, res) => {
+//   // console.log(req.body.URL);
+//   console.log('Post Received!');
+//   const formURL = req.body.URL;
+//   // const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
+//   textapi.entities(formURL,
+//     await function(error, response) {
+//     if (error === null) {
+//     // aylienData = response.entities;
+//     // console.log(aylienData);
+//     let newData = response.entities;
+//     let newEntry = {
+//       loc: newData.location,
+//       keyW: newData.keyword,
+//       org: newData.organization,
+//       pers: newData.person
+//       };
+//     aylienData.push(newEntry);
+//     console.log('Data End of Post:', aylienData);
+//
+//     }else{
+//     console.log("error:",  error);
+//     console.log(textapi);
+//   }
+//   })
+// });
 
 app.get('/getData', function (req, res) {
     console.log('Data Begin of Get:', aylienData);
