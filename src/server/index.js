@@ -3,7 +3,7 @@ dotenv.config();
 var path = require('path')
 const express = require('express')
 const sampleAPIResp = require('./sampleAPI.js')
-const aylienData = [];
+let aylienData = [];
 
 //Setup Aylient API
 var AYLIENTextAPI = require('aylien_textapi');
@@ -41,10 +41,11 @@ app.get('/', function (req, res) {
 
 const getAylienAPI = async (req, res) => {
   // console.log(req.body.URL);
-  console.log('Post Received!');
-  const formURL = req.body.URL;
+  // aylienData = [];
+  // console.log('Post Received!');
+  // const formURL = req.body.URL;
   // const testURL = 'https://en.wikipedia.org/wiki/Belinda_Carlisle';
-  const getData = await textapi.entities(formURL,
+  const getData = await textapi.entities(req.body.URL,
     function(error, response) {
     if (error === null) {
     // aylienData = response.entities;
@@ -67,6 +68,35 @@ const getAylienAPI = async (req, res) => {
 };
 
 app.post('/apiData', getAylienAPI);
+
+// app.get('/getData', function (req, res) {
+//     console.log('Data Begin of Get:', aylienData);
+//     res.send(aylienData);
+//     console.log('Data sent')
+// });
+
+// app.get('/getData', setTimeout(function (req, res) {
+//     console.log('Data Begin of Get:', aylienData);
+//     res.send(aylienData);
+//     console.log('Data sent')
+// }, 3000));
+
+app.get('/getData', function (req, res) {
+    console.log('Data Begin of Get:', aylienData);
+    setTimeout(function() {res.send(aylienData);}, 3000)
+    console.log('Data sent')
+    aylienData = [];
+});
+
+// const getAylienAPI = new Promise(function(resolve, reject) {
+//   const aylienData = [];
+//   AylienAPI
+//   if (aylienData !== []) {
+//     resolve("Data retreived.");
+//   }else {
+//     reject(Error("No data"));
+//   }
+// });
 
 // app.post('/apiData', async (req, res) => {
 //   // console.log(req.body.URL);
@@ -94,9 +124,3 @@ app.post('/apiData', getAylienAPI);
 //   }
 //   })
 // });
-
-app.get('/getData', function (req, res) {
-    console.log('Data Begin of Get:', aylienData);
-    res.send(aylienData);
-    console.log('Data sent')
-});

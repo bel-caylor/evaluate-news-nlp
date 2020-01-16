@@ -10,6 +10,8 @@ function handleSubmit(event) {
     let formURL = document.getElementById('formURL').value
     callAylienAPI('http://localhost:8080/apiData', {"URL":formURL})
       .then(updateUI())
+
+    // setTimeout(updateUI,10000)
       // .then()
 }
 
