@@ -8,11 +8,20 @@ function handleSubmit(event) {
 
     // console.log(formURL)
     let formURL = document.getElementById('formURL').value
-    callAylienAPI('http://localhost:8080/apiData', {"URL":formURL})
-      .then(updateUI())
 
+    if (testValidURL === true) {
+      callAylienAPI('http://localhost:8080/apiData', {"URL":formURL})
+        .then(updateUI())
+    }else {
+      alert('Please enter a valid URL')
+    }
     // setTimeout(updateUI,10000)
       // .then()
 }
+
+function testValidURL(formURL) {
+    let pattern = /http(s):/;
+    return pattern.test(formURL);
+};
 
 export { handleSubmit }
